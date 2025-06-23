@@ -1,0 +1,16 @@
+{% load static %}
+
+<section class="about bg-primary-200 mt-12">
+    <div class="bg-white rounded shadow-sm overflow-hidden">
+        <div class="relative h-80">
+            <div style="background-image: url{% static 'images/imageold.png' %};" class="absolute inset-0 bg-cover bg-center"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-transparent flex items-center">
+                <div class="container mx-auto px-6 py-12">
+                    <h1 class="text-4xl font-bold text-white mb-4">About Our Boutique</h1>
+                    <p class="text-xl text-white/90 max-w-lg">Curating exceptional fashion experiences since 2010. We believe in quality, sustainability, and personal style.</p>
+                    <button class="bg-white text-gray-800 px-4 py-2 rounded-button font-medium hover:bg-primary hover:text-white mt-1 transition-colors whitespace-nowrap">know more</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

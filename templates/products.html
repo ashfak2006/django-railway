@@ -1,0 +1,14 @@
+{% load static %}
+
+{% block header %}
+        {% include 'main/header.html' %}
+{% endblock header %}
+
+{% block navbar %}
+        {% include 'main/nav_bar.html' %}
+{% endblock navbar %}
+<body class="bg-white">
+{% block details %}
+        {% include 'productcomponents/product_list.html' %}
+{% endblock details %}
+</body>

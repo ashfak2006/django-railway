@@ -1,0 +1,149 @@
+{% load static %}
+
+<div id="order-history" class="tab-content">
+    <div class="bg-white rounded shadow-sm p-6 mb-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold">Order History</h2>
+            
+        </div>
+        {% if orders %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y bg-white divide-gray-200">
+               
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                {% for order in orders %}
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{order.order_number}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{order.order_processed_at}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{order.order_items.count}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{order.grand_total}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{{order.get_status_display}}</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <A href="{% url 'order_details' order.order_number %}" class="text-primary hover:underline">View Details</A>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+        
+        
+    </div>
+</div>
+
+<!-- Preferences -->
+<div id="preferences" class="tab-content">
+    <div class="bg-white rounded shadow-sm p-6 mb-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold">Account Preferences</h2>
+            <button class="bg-primary text-white px-4 py-2 rounded-button whitespace-nowrap flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                    <i class="ri-save-line"></i>
+                </div>
+                Save Changes
+            </button>
+        </div>
+        
+        <div class="space-y-6">
+            <div>
+                <h3 class="font-medium mb-3">Communication Preferences</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="order-updates" checked>
+                        <label for="order-updates" class="ml-2">Order updates and shipping notifications</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="promotions" checked>
+                        <label for="promotions" class="ml-2">Promotions, discounts, and sales</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="new-products">
+                        <label for="new-products" class="ml-2">New product announcements</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="surveys">
+                        <label for="surveys" class="ml-2">Surveys and feedback requests</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="font-medium mb-3">Privacy Settings</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Share my purchase history with product recommendations</p>
+                            <p class="text-sm text-gray-500">Allow us to use your purchase history to recommend products</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Allow personalized ads</p>
+                            <p class="text-sm text-gray-500">See ads based on your browsing and purchase history</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="font-medium mb-3">Currency and Language</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+                        <div class="relative">
+                            <select class="w-full appearance-none px-4 py-2 pr-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option>USD - US Dollar</option>
+                                <option>EUR - Euro</option>
+                                <option>GBP - British Pound</option>
+                                <option>CAD - Canadian Dollar</option>
+                                <option>AUD - Australian Dollar</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                <i class="ri-arrow-down-s-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Language</label>
+                        <div class="relative">
+                            <select class="w-full appearance-none px-4 py-2 pr-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option>English</option>
+                                <option>Spanish</option>
+                                <option>French</option>
+                                <option>German</option>
+                                <option>Chinese</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                <i class="ri-arrow-down-s-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

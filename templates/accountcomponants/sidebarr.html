@@ -1,0 +1,68 @@
+{% load static %}
+
+<div class="w-full md:w-1/4">
+    <div class="bg-white rounded shadow-sm p-6">
+        <div class="flex items-center space-x-4 mb-6">
+           
+            <div>
+                {% if fname %}
+                <h2 class="text-lg font-semibold">{{fname}} {{lname}}</h2>
+                <p class="text-gray-500 text-sm">Member since April 2023</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="space-y-2">
+            <button class="account-tab active w-full text-left py-3 px-4 rounded hover:bg-gray-50 border-l-4 border-transparent transition-all" data-tab="personal-info">
+                <div class="flex items-center">
+                    <div class="w-6 h-6 flex items-center justify-center mr-3">
+                        <i class="ri-user-line"></i>
+                    </div>
+                    Personal Information
+                </div>
+            </button>
+            <button class="account-tab w-full text-left py-3 px-4 rounded hover:bg-gray-50 border-l-4 border-transparent transition-all" data-tab="addresses">
+                <div class="flex items-center">
+                    <div class="w-6 h-6 flex items-center justify-center mr-3">
+                        <i class="ri-map-pin-line"></i>
+                    </div>
+                    Addresses
+                </div>
+            </button>
+            <!-- <button class="account-tab w-full text-left py-3 px-4 rounded hover:bg-gray-50 border-l-4 border-transparent transition-all" data-tab="payment-methods">
+                <div class="flex items-center">
+                    <div class="w-6 h-6 flex items-center justify-center mr-3">
+                        <i class="ri-bank-card-line"></i>
+                    </div>
+                    Payment Methods
+                </div>
+            </button> -->
+            <button class="account-tab w-full text-left py-3 px-4 rounded hover:bg-gray-50 border-l-4 border-transparent transition-all" data-tab="order-history">
+                <div class="flex items-center">
+                    <div class="w-6 h-6 flex items-center justify-center mr-3">
+                        <i class="ri-file-list-line"></i>
+                    </div>
+                    Order History
+                </div>
+            </button>
+            <!-- <button class="account-tab w-full text-left py-3 px-4 rounded hover:bg-gray-50 border-l-4 border-transparent transition-all" data-tab="preferences">
+                <div class="flex items-center">
+                    <div class="w-6 h-6 flex items-center justify-center mr-3">
+                        <i class="ri-settings-line"></i>
+                    </div>
+                    Preferences
+                </div>
+            </button> -->
+            
+            <button class="w-full text-left py-3 px-4 rounded hover:bg-gray-50 border-l-4 border-transparent transition-all text-red-500">
+                <div class="flex items-center">
+                    <div class="w-6 h-6 flex items-center justify-center mr-3">
+                        <i class="ri-logout-box-line"></i>
+                    </div>
+                   <a href="{% url 'logout' %}">Sign Out</a> 
+                </div>
+            </button>
+            
+        </div>
+    </div>
+</div>

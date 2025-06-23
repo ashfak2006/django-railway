@@ -1,0 +1,14 @@
+{% load static %}
+
+{% block header %}
+            {% include 'main/header.html' %}
+{% endblock header %}
+    <!-- Header -->
+
+{% block navbar %}
+    {% include 'main/nav_bar.html' %}
+{% endblock navbar %}
+
+{% block body %}
+    {% include 'cartcoponents/placeorder.html' %}
+{% endblock %}

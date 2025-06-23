@@ -1,0 +1,131 @@
+{% load static %}
+<section class="py-20 px-8 bg-gray-50">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-semibold mb-4">Latest Arrivals</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Discover our newest jewelry pieces, crafted with precision and designed for those who appreciate true luxury.</p>
+</div>
+<div class="carousel-container relative">
+<div class="carousel flex space-x-6 overflow-x-auto pb-4 scrollbar-hide">
+        {% if feuterd_products %}
+        {% for product in feuterd_products %}
+        <!-- <div class="product-card group">
+            <div class="relative overflow-hidden rounded-lg mb-3">
+                <img src="{{product.image1.url}}" alt="Diamond Pendant Necklace" class="w-full h-auto object-cover transition-transform duration-300">
+                <div class="quick-view absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <button  class="bg-white text-gray-800 px-4 py-2 rounded-button font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap">
+                        <a href="{% url 'product_details' product.id %}">Quick View</a></button>
+                </div>
+                
+                {% if product.isnew %}
+                <div class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded">
+                    New
+                </div>
+                {% endif %}
+            </div>
+            <h3 class="text-gray-800 font-medium mb-1">{{product.title}}</h3>
+            <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-half-fill"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(({{product.review_count}})
+                 reviews)</span>
+            </div>
+            <div class="flex items-center justify-between">
+                <div>
+                    <span class="text-gray-800 font-semibold">{{product.sale_price}}</span>
+                    <span class="text-gray-500 line-through text-sm ml-2">{{product.price}}</span>
+                </div>
+                <form method="post" action="{% url 'add_to_cart' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden"  name="product_id" value="{{product.id}}"/>
+                    <input type="number" hidden value="1" min="1" name="quantity"/>
+                <button type="submit" class="w-9 h-9 flex items-center justify-center bg-gray-100 text-gray-700 rounded-full hover:bg-primary hover:text-white transition-colors">
+                    <i class="ri-shopping-bag-line"></i>
+                </button>
+            </div>
+        </div> -->
+        <div class="carousel-item w-64 flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="h-64 overflow-hidden">
+    <a href="{% url 'product_details' product.id %}"><img src="{{product.image1.url}}"></a>
+    </div>
+    <div class="p-4">
+    <h3 class="text-lg font-medium mb-2">{{product.title}}</h3>
+    <div class="flex justify-between items-center">
+    <p class="text-primary font-semibold">${{product.sale_price}}</p>
+    <span class="text-gray-500 line-through text-sm ml-2">{{product.price}}</span>
+    <form method="post" action="{% url 'add_to_cart' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden"  name="product_id" value="{{product.id}}"/>
+                    <input type="number" hidden value="1" min="1" name="quantity"/>
+                <!-- <button type="submit" class="w-9 h-9 flex items-center justify-center bg-gray-100 text-gray-700 rounded-full hover:bg-primary hover:text-white transition-colors">
+                    <i class="ri-shopping-bag-line"></i>
+                </button> -->
+                <button  type="submit"  class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full hover:bg-opacity-90 transition-all">
+                <i class="ri-shopping-cart-line"></i>
+                </button>
+    </form>
+    </div>
+    </div>
+    </div>
+       {% endfor %}
+        {% endif %}
+    <button class="carousel-control left w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:text-primary transition-all">
+    <i class="ri-arrow-left-s-line ri-lg"></i>
+    </button>
+    <button class="carousel-control right w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-md text-gray-800 hover:text-primary transition-all">
+    <i class="ri-arrow-right-s-line ri-lg"></i>
+    </button>
+
+</div>
+</div>
+</section>
+<style>
+.carousel-container {
+position: relative;
+overflow: hidden;
+}
+.carousel {
+display: flex;
+transition: transform 0.5s ease;
+}
+.carousel-item {
+flex: 0 0 auto;
+}
+.carousel-control {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+z-index: 10;
+}
+.carousel-control.left {
+left: 10px;
+}
+.carousel-control.right {
+right: 10px;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const carousel = document.querySelector('.carousel');
+const leftControl = document.querySelector('.carousel-control.left');
+const rightControl = document.querySelector('.carousel-control.right');
+const itemWidth = document.querySelector('.carousel-item').offsetWidth + 24; // width + gap
+leftControl.addEventListener('click', function() {
+carousel.scrollBy({
+left: -itemWidth * 2,
+behavior: 'smooth'
+});
+});
+rightControl.addEventListener('click', function() {
+carousel.scrollBy({
+left: itemWidth * 2,
+behavior: 'smooth'
+});
+});
+});
+</script>

@@ -1,0 +1,85 @@
+{% load static %}
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div>
+                <a href="#" class="text-3xl font-['Pacifico'] text-primary mb-6 inline-block">logo</a>
+                <p class="text-gray-400 mb-6">Crafting timeless elegance since 1985. Each piece tells a unique story of luxury and sophistication.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+                        <i class="ri-facebook-fill"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+                        <i class="ri-pinterest-line"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+                        <i class="ri-twitter-x-line"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-semibold mb-6">Shop</h3>
+                <ul class="space-y-3">
+                     {% for i in catagories %}
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">{{i.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-semibold mb-6">Help</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">FAQs</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Shipping & Returns</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Jewelry Care</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Size Guide</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Track Order</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-semibold mb-6">About</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Our Story</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Sustainability</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Craftsmanship</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Careers</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Press</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="pt-8 border-t border-gray-800">
+            <div class="flex flex-col md:flex-row md:justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400">&copy; 2025 Luxury Jewelry. All rights reserved.</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">Accessibility</a>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center space-x-3">
+                    <span class="w-8 h-8 flex items-center justify-center">
+                        <i class="ri-visa-fill ri-lg"></i>
+                    </span>
+                    <span class="w-8 h-8 flex items-center justify-center">
+                        <i class="ri-mastercard-fill ri-lg"></i>
+                    </span>
+                    <span class="w-8 h-8 flex items-center justify-center">
+                        <i class="ri-paypal-fill ri-lg"></i>
+                    </span>
+                    <span class="w-8 h-8 flex items-center justify-center">
+                        <i class="ri-apple-fill ri-lg"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

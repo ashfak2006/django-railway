@@ -1,0 +1,83 @@
+{% load static %}
+
+<div id="payment-methods" class="tab-content">
+    <div class="bg-white rounded shadow-sm p-6 mb-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold">Payment Methods</h2>
+            <button class="bg-primary text-white px-4 py-2 rounded-button whitespace-nowrap flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                    <i class="ri-add-line"></i>
+                </div>
+                Add Payment Method
+            </button>
+        </div>
+        
+        <div class="space-y-4">
+            <div class="border border-gray-200 rounded p-4 relative">
+                <div class="absolute top-4 right-4 flex space-x-2">
+                    <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary bg-gray-100 rounded-full">
+                        <i class="ri-edit-line"></i>
+                    </button>
+                    <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 bg-gray-100 rounded-full">
+                        <i class="ri-delete-bin-line"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="w-12 h-12 flex items-center justify-center mr-4 bg-blue-100 rounded">
+                        <i class="ri-visa-fill ri-2x text-blue-700"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium">Visa ending in 4567</h3>
+                            <span class="ml-2 inline-block px-2 py-0.5 bg-primary bg-opacity-10 text-primary text-xs rounded">Default</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Expires 05/2026</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border border-gray-200 rounded p-4 relative">
+                <div class="absolute top-4 right-4 flex space-x-2">
+                    <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary bg-gray-100 rounded-full">
+                        <i class="ri-edit-line"></i>
+                    </button>
+                    <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 bg-gray-100 rounded-full">
+                        <i class="ri-delete-bin-line"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="w-12 h-12 flex items-center justify-center mr-4 bg-red-100 rounded">
+                        <i class="ri-mastercard-fill ri-2x text-red-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium">Mastercard ending in 8901</h3>
+                        <p class="text-gray-500 text-sm">Expires 11/2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border border-gray-200 rounded p-4 relative">
+                <div class="absolute top-4 right-4 flex space-x-2">
+                    <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary bg-gray-100 rounded-full">
+                        <i class="ri-edit-line"></i>
+                    </button>
+                    <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 bg-gray-100 rounded-full">
+                        <i class="ri-delete-bin-line"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="w-12 h-12 flex items-center justify-center mr-4 bg-blue-50 rounded">
+                        <i class="ri-paypal-fill ri-2x text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium">PayPal</h3>
+                        <p class="text-gray-500 text-sm">emily.johnson@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

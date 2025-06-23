@@ -1,0 +1,261 @@
+{% load static %}
+<main class="flex-grow flex items-center justify-center mt-12 p-6">
+    <div class="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
+        <div class="mb-8 text-center">
+            <div class="flex justify-center mb-6">
+                <div class="inline-flex rounded-full overflow-hidden">
+                    <button id="login-tab" class="px-6 py-2 text-sm font-medium transition-colors bg-gray-100 text-gray-700" onclick="switchTab('login')">Login</button>
+                    <button id="signup-tab" class="px-6 py-2 text-sm font-medium transition-colors bg-primary text-white" onclick="switchTab('signup')">Create Account</button>
+                </div>
+            </div>
+          
+            <h1 id="form-title" class="text-2xl font-bold text-gray-800">Create Account</h1>
+            <p id="form-subtitle" class="text-gray-500 mt-2">Join us and start shopping today</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" method="post" enctype="multipart/form-data" class="space-y-5 hidden">
+            {% csrf_token %}
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+                    <i class="ri-mail-line text-gray-400"></i>
+                </div>
+                <input type="email" class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Email address" name="email" required="">
+            </div>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+                    <i class="ri-lock-line text-gray-400"></i>
+                </div>
+                <input type="password" id="login-password" class="w-full pl-10 pr-10 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Password" name="password" required="">
+                <button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3 w-10 h-10" onclick="togglePasswordVisibility('login-password')">
+                    <i id="login-password-icon" class="ri-eye-off-line text-gray-400"></i>
+                </button>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                        <input name="remember-me" type="checkbox" id="remember-me" class="opacity-0 absolute h-5 w-5">
+                        <div class="bg-gray-200 rounded-md h-5 w-5 flex items-center justify-center toggle-checkbox">
+                            <div class="hidden check-icon">
+                                <i class="ri-check-line text-white text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="remember-me" class="text-sm text-gray-600 cursor-pointer">Remember me</label>
+                </div>
+                <a href="#" class="text-sm text-primary hover:underline">Forgot password?</a>
+            </div>
+            <button type="submit" name="login-form" class="w-full py-3 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">Sign In</button>
+            
+            <div class="relative my-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-center">
+                    <span class="px-3 bg-white text-sm text-gray-500">or continue with</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <button type="button" class="flex items-center justify-center py-2.5 border border-gray-200 rounded-button hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                        <i class="ri-google-fill text-[#4285F4]"></i>
+                    </div>
+                    <span class="text-sm">Google</span>
+                </button>
+                <button type="button" class="flex items-center justify-center py-2.5 border border-gray-200 rounded-button hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                        <i class="ri-facebook-fill text-[#1877F2]"></i>
+                    </div>
+                    <span class="text-sm">Facebook</span>
+                </button>
+            </div>
+            
+            <p class="text-center text-sm text-gray-600 mt-6">
+                New here? <a href="#" class="text-primary hover:underline" onclick="switchTab('signup'); return false;">Create an account</a>
+            </p>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" method="post" enctype="multipart/form-data" class="space-y-5">
+            {% csrf_token %}
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+                    <i class="ri-user-line text-gray-400"></i>
+                </div>
+                <input type="text" class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="First name" name="first_name" required="">
+            </div>
+
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+                    <i class="ri-user-line text-gray-400"></i>
+                </div>
+                <input type="text" class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Last name" name="last_name" required="">
+            </div>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+                    <i class="ri-lock-line text-gray-400"></i>
+                </div>
+                <input type="text" id="" class="w-full pl-10 pr-10 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="username" name="username" required="">
+                <button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3 w-10 h-10" onclick="togglePasswordVisibility('confirm-password')">
+                    <i id="confirm-password-icon" class="ri-eye-off-line text-gray-400"></i>
+                </button>
+            </div>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+                    <i class="ri-mail-line text-gray-400"></i>
+                </div>
+                <input type="email" class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Email address" name="email" required="">
+            </div>
+
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+                    <i class="ri-lock-line text-gray-400"></i>
+                </div>
+                <input type="password" id="signup-password" class="w-full pl-10 pr-10 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" name="password" placeholder="Password" required="">
+                <button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3 w-10 h-10" onclick="togglePasswordVisibility('signup-password')">
+                    <i id="signup-password-icon" class="ri-eye-off-line text-gray-400"></i>
+                </button>
+            </div>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+                    <i class="ri-map-pin-line text-gray-400"></i>
+                </div>
+                <textarea class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Shipping address" name="shipping_address" rows="2" required=""></textarea>
+            </div>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+                    <i class="ri-phone-line text-gray-400"></i>
+                </div>
+                <input type="tel" class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" name="phone" placeholder="Phone number (optional)">
+            </div>
+            <div class="flex items-start">
+                <div class="relative inline-block w-10 mr-2 align-top select-none mt-0.5">
+                    <input type="checkbox" id="terms" class="opacity-0 absolute h-5 w-5" required="">
+                    <div class="rounded-md h-5 w-5 flex items-center justify-center toggle-checkbox bg-gray-200">
+                        <div class="check-icon hidden">
+                            <i class="ri-check-line text-white text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <label for="terms" class="text-sm text-gray-600">I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a> and <a href="#" class="text-primary hover:underline">Privacy Policy</a></label>
+            </div>
+            <button type="submit" name="signup-form" class="w-full py-3 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">Create Account</button>
+            
+            <div class="relative my-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-center">
+                    <span class="px-3 bg-white text-sm text-gray-500">or continue with</span>
+                </div>
+            </div>
+            
+            <!-- <div class="grid grid-cols-2 gap-4">
+                <button type="button" class="flex items-center justify-center py-2.5 border border-gray-200 rounded-button hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                        <i class="ri-google-fill text-[#4285F4]"></i>
+                    </div>
+                    <span class="text-sm">Google</span>
+                </button>
+                <button type="button" class="flex items-center justify-center py-2.5 border border-gray-200 rounded-button hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                        <i class="ri-facebook-fill text-[#1877F2]"></i>
+                    </div>
+                    <span class="text-sm">Facebook</span>
+                </button>
+            </div> -->
+            
+            <p class="text-center text-sm text-gray-600 mt-6">
+                Already have an account? <a href="#" class="text-primary hover:underline" onclick="switchTab('login'); return false;">Sign in</a>
+            </p>
+
+        </form>
+        {% if messages %}
+        {% for messagess in messages %}
+        <h1 class="text-2xl text-center font-bold text-gray-800">{{messagess}}</h1>
+        <p class="text-gray-500 mt-2">Join us and start shopping today</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Custom checkbox functionality
+    const checkboxes = document.querySelectorAll('.toggle-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('click', function() {
+            const input = this.parentNode.querySelector('input[type="checkbox"]');
+            const checkIcon = this.querySelector('.check-icon');
+            
+            input.checked = !input.checked;
+            
+            if (input.checked) {
+                this.classList.add('bg-primary');
+                this.classList.remove('bg-gray-200');
+                checkIcon.classList.remove('hidden');
+            } else {
+                this.classList.remove('bg-primary');
+                this.classList.add('bg-gray-200');
+                checkIcon.classList.add('hidden');
+            }
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize tabs
+    switchTab('login');
+});
+
+function switchTab(tab) {
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const loginTab = document.getElementById('login-tab');
+    const signupTab = document.getElementById('signup-tab');
+    const formTitle = document.getElementById('form-title');
+    const formSubtitle = document.getElementById('form-subtitle');
+    
+    if (tab === 'login') {
+        loginForm.classList.remove('hidden');
+        signupForm.classList.add('hidden');
+        
+        loginTab.classList.add('bg-primary', 'text-white');
+        loginTab.classList.remove('bg-gray-100', 'text-gray-700');
+        
+        signupTab.classList.remove('bg-primary', 'text-white');
+        signupTab.classList.add('bg-gray-100', 'text-gray-700');
+        
+        formTitle.textContent = 'Welcome Back';
+        formSubtitle.textContent = 'Sign in to access your account';
+    }else {
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+        
+        loginTab.classList.remove('bg-primary', 'text-white');
+        loginTab.classList.add('bg-gray-100', 'text-gray-700');
+        
+        signupTab.classList.add('bg-primary', 'text-white');
+        signupTab.classList.remove('bg-gray-100', 'text-gray-700');
+        
+        formTitle.textContent = 'Create Account';
+        formSubtitle.textContent = 'Join us and start shopping today';
+    }
+}
+
+function togglePasswordVisibility(inputId) {
+    const passwordInput = document.getElementById(inputId);
+    const iconElement = document.getElementById(`${inputId}-icon`);
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        iconElement.classList.remove('ri-eye-off-line');
+        iconElement.classList.add('ri-eye-line');
+    } else {
+        passwordInput.type = 'password';
+        iconElement.classList.remove('ri-eye-line');
+        iconElement.classList.add('ri-eye-off-line');
+    }
+}
+
+</script>

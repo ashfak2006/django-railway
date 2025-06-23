@@ -1,0 +1,289 @@
+{% load static %}
+<main class="container mt-12 mx-auto px-4 py-12">
+    <!-- Mobile Filter Toggle -->
+    <div class="lg:hidden mb-6">
+        <button class="w-full bg-gray-100 py-3 px-4 rounded flex items-center justify-between text-gray-800 font-medium" id="mobile-filter-toggle">
+            <span>Filter Products</span>
+            <span class="w-5 h-5 flex items-center justify-center">
+                <i class="ri-filter-3-line"></i>
+            </span>
+        </button>
+    </div>
+
+    <div class="flex flex-col lg:flex-row">
+        <!-- Filters Sidebar -->
+        <!-- <aside class="w-full lg:w-64 lg:mr-8 lg:sticky lg:top-24 lg:self-start overflow-hidden transition-all duration-300" id="filters-sidebar">
+            <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-3">Price Range</h3>
+                    <div class="mb-4">
+                        <input type="range" min="0" max="10000" value="5000" class="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer">
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="w-[45%]">
+                            <label class="text-sm text-gray-600 mb-1 block">Min</label>
+                            <input type="number" value="0" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                        </div>
+                        <span class="text-gray-400">-</span>
+                        <div class="w-[45%]">
+                            <label class="text-sm text-gray-600 mb-1 block">Max</label>
+                            <input type="number" value="5000" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-3">Material</h3>
+                    <div class="space-y-2">
+                        <label class="custom-checkbox block text-gray-700">
+                            Gold
+                            <input type="checkbox" checked="">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Silver
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Platinum
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Rose Gold
+                            <input type="checkbox" checked="">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            White Gold
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-3">Style</h3>
+                    <div class="space-y-2">
+                        <label class="custom-checkbox block text-gray-700">
+                            Classic
+                            <input type="checkbox" checked="">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Modern
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Vintage
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Minimalist
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Statement
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-3">Collection</h3>
+                    <div class="space-y-2">
+                        <label class="custom-checkbox block text-gray-700">
+                            Eternal Elegance
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Celestial Dreams
+                            <input type="checkbox" checked="">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Royal Heritage
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Nature's Whisper
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Urban Chic
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-3">Color</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="w-8 h-8 rounded-full bg-yellow-500 border-2 border-transparent focus:border-gray-400"></button>
+                        <button class="w-8 h-8 rounded-full bg-gray-300 border-2 border-transparent focus:border-gray-400"></button>
+                        <button class="w-8 h-8 rounded-full bg-pink-300 border-2 border-gray-400 focus:border-gray-400"></button>
+                        <button class="w-8 h-8 rounded-full bg-blue-400 border-2 border-transparent focus:border-gray-400"></button>
+                        <button class="w-8 h-8 rounded-full bg-green-400 border-2 border-transparent focus:border-gray-400"></button>
+                        <button class="w-8 h-8 rounded-full bg-purple-400 border-2 border-transparent focus:border-gray-400"></button>
+                        <button class="w-8 h-8 rounded-full bg-red-400 border-2 border-transparent focus:border-gray-400"></button>
+                        <button class="w-8 h-8 rounded-full bg-black border-2 border-transparent focus:border-gray-400"></button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <button class="text-primary hover:underline font-medium">Clear All</button>
+                    <button class="bg-primary hover:bg-opacity-90 text-white px-6 py-2 rounded-button font-medium transition-all whitespace-nowrap">Apply Filters</button>
+                </div>
+            </div>
+        </aside> -->
+
+        <!-- Product Grid -->
+        <div class="flex-1">
+            <!-- Active Filters -->
+            <!-- <div class="mb-6 flex flex-wrap items-center gap-2">
+                <span class="text-gray-600 font-medium">Active Filters:</span>
+                <div class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+                    <span class="text-sm text-gray-700">Gold</span>
+                    <button class="ml-2 w-4 h-4 flex items-center justify-center text-gray-500">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                <div class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+                    <span class="text-sm text-gray-700">Rose Gold</span>
+                    <button class="ml-2 w-4 h-4 flex items-center justify-center text-gray-500">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                <div class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+                    <span class="text-sm text-gray-700">Classic</span>
+                    <button class="ml-2 w-4 h-4 flex items-center justify-center text-gray-500">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                <div class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+                    <span class="text-sm text-gray-700">Celestial Dreams</span>
+                    <button class="ml-2 w-4 h-4 flex items-center justify-center text-gray-500">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+            </div> -->
+            <!-- Sort & View Options -->
+            <!-- <div class="mb-6 flex flex-wrap justify-between items-center">
+                <div class="mb-4 sm:mb-0">
+                    <span class="text-gray-600">Showing 1-12 of 348 products</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <select class="appearance-none bg-white border border-gray-300 rounded px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>Sort by: Featured</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Newest First</option>
+                            <option>Best Selling</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button class="w-9 h-9 flex items-center justify-center bg-primary text-white rounded">
+                            <i class="ri-layout-grid-line"></i>
+                        </button>
+                        <button class="w-9 h-9 flex items-center justify-center bg-gray-200 text-gray-600 rounded">
+                            <i class="ri-list-check"></i>
+                        </button>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+            {% for product in product %}
+                <!-- Product 1 -->
+                <div class="product-card group">
+                    <div class="relative overflow-hidden rounded-lg mb-3">
+                        <img src="{{product.image1.url}}" alt="Diamond Pendant Necklace" class="w-full h-auto object-cover transition-transform duration-300">
+                        <div class="quick-view absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                            <button class="bg-white text-gray-800 px-4 py-2 rounded-button font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap">
+                                <a href="{% url 'product_details' product.id %}">Quick View</a>
+                            </button>
+                        </div>
+                        <!-- <button class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full text-gray-600 hover:text-primary transition-colors">
+                            <i class="ri-heart-line"></i>
+                        </button> -->
+                        {% if product.isnew %}
+                        <div class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded">New</div>
+                        {% endif %}
+                    </div>
+                    <h3 class="text-gray-800 font-medium mb-1">{{product.title}}</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                          {% for i in '12345' %}
+                                {% if forloop.counter <= average_rating %}
+                                <i class="ri-star-fill text-yellow-400"></i>
+                                {% else %}
+                                <i class="ri-star-fill text-grey-100"></i>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
+                        <span class="text-xs text-gray-500 ml-1">({{product.review_count}})</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-gray-800 font-semibold">${{product.sale_price}}</span>
+                            <span class="text-gray-500 line-through text-sm ml-2">${{product.price}}</span>
+                        </div>
+                        {% if product.stock_status == 'out_of_stock' %}
+                        <p class="text-red-600 text-sm mt-1">out of stock</p>
+                        {% else %}
+                        <form method="post" action="{% url 'add_to_cart' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden"  name="product_id" value="{{product.id}}"/>
+                            <input type="number" hidden value="1" min="1" name="quantity"/>
+                        <button type="submit" class="w-9 h-9 flex items-center justify-center bg-gray-100 text-gray-700 rounded-full hover:bg-primary hover:text-white transition-colors">
+                            <i class="ri-shopping-bag-line"></i>
+                        </button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>    
+            {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if product.paginator.num_pages > 1 %}
+            <div class="mt-12 flex justify-center">
+                {% if product.has_previous %}
+                <nav class="flex items-center space-x-1">
+                    <a href="?pages=1" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white">1</a>
+                    <a href="?pages={{product.previous_page_number}}" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                        <i class="ri-arrow-left-s-line"></i>
+                    </a>
+                {% endif %}
+
+                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white">{{product.number}}</a>
+                {% if product.has_next %}
+                    <a href="?page={{product.next_page_number}}" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-primary hover:text-white hover:border-primary transition-colors">{{product.next_page_number}}</a>
+                    
+                    <span class="w-10 h-10 flex items-center justify-center text-gray-600">...</span>
+    
+                    <a href="?page={{product.paginator.num_pages}}" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </a>
+
+                {% endif %}
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</main>

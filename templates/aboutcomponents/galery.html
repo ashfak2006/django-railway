@@ -1,0 +1,58 @@
+{% load static %}
+
+<div class="bg-white container-fluid rounded shadow-sm p-8 mb-8">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Photo Gallery</h2>
+
+    <div class="flex justify-center mb-6">
+        <div class="px-1 py-1 bg-gray-100 rounded-full inline-flex">
+            <button class="gallery-filter px-4 py-1 rounded-full" data-filter="all">All</button>
+            <button class="gallery-filter px-4 py-1 rounded-full" data-filter="store">Our Stores</button>
+            <button class="gallery-filter px-4 py-1 rounded-full" data-filter="team">Our Team</button>
+            <button class="gallery-filter px-4 py-1 rounded-full active bg-white shadow-sm" data-filter="products">Products</button>
+        </div>
+    </div>
+    
+    <div class="gallery-container">
+        <div class="gallery-item rounded overflow-hidden" data-category="store" style="display: none;">
+            <img src="https://readdy.ai/api/search-image?query=modern%20fashion%20boutique%20interior%2C%20stylish%20clothing%20display%2C%20elegant%20retail%20space%2C%20soft%20lighting%2C%20high-end%20fashion%20store%2C%20luxury%20shopping%20experience%2C%20minimalist%20design%2C%20high%20quality%20professional%20photograph&amp;width=600&amp;height=400&amp;seq=4&amp;orientation=landscape" alt="Store Interior" class="w-full h-full object-cover">
+            <div class="gallery-caption">
+                <h4 class="font-medium">San Francisco Flagship Store</h4>
+            </div>
+        </div>
+        
+        <div class="gallery-item rounded overflow-hidden" data-category="team" style="display: none;">
+            <img src="https://readdy.ai/api/search-image?query=diverse%20fashion%20retail%20team%2C%20stylish%20employees%20in%20boutique%20setting%2C%20fashion%20consultants%20helping%20customers%2C%20friendly%20sales%20staff%2C%20professional%20retail%20team%20portrait%2C%20high%20quality%20professional%20photograph&amp;width=600&amp;height=400&amp;seq=5&amp;orientation=landscape" alt="Our Team" class="w-full h-full object-cover">
+            <div class="gallery-caption">
+                <h4 class="font-medium">Our Amazing Team</h4>
+            </div>
+        </div>
+        
+        <div class="gallery-item rounded overflow-hidden" data-category="products" style="display: block;">
+            <img src="https://readdy.ai/api/search-image?query=high-end%20fashion%20clothing%20collection%2C%20elegant%20dresses%20on%20display%2C%20luxury%20apparel%2C%20designer%20clothing%2C%20stylish%20outfits%2C%20boutique%20fashion%20display%2C%20professional%20fashion%20photography%2C%20high%20quality&amp;width=600&amp;height=800&amp;seq=6&amp;orientation=portrait" alt="Summer Collection" class="w-full h-full object-cover">
+            <div class="gallery-caption">
+                <h4 class="font-medium">Summer 2025 Collection</h4>
+            </div>
+        </div>
+        
+        <div class="gallery-item rounded overflow-hidden" data-category="store" style="display: none;">
+            <img src="https://readdy.ai/api/search-image?query=fashion%20boutique%20storefront%20at%20night%2C%20elegant%20retail%20facade%20with%20illuminated%20signage%2C%20stylish%20window%20display%2C%20high-end%20shopping%20district%2C%20luxury%20fashion%20store%20exterior%2C%20professional%20architecture%20photography&amp;width=800&amp;height=600&amp;seq=7&amp;orientation=landscape" alt="Store Exterior" class="w-full h-full object-cover">
+            <div class="gallery-caption">
+                <h4 class="font-medium">Los Angeles Location</h4>
+            </div>
+        </div>
+        
+        <div class="gallery-item rounded overflow-hidden" data-category="products" style="display: block;">
+            <img src="https://readdy.ai/api/search-image?query=luxury%20accessories%20collection%2C%20designer%20handbags%2C%20jewelry%2C%20scarves%2C%20and%20shoes%20elegantly%20displayed%2C%20high-end%20fashion%20accessories%2C%20professional%20product%20photography%2C%20soft%20lighting%2C%20minimalist%20background&amp;width=800&amp;height=400&amp;seq=8&amp;orientation=landscape" alt="Accessories Collection" class="w-full h-full object-cover">
+            <div class="gallery-caption">
+                <h4 class="font-medium">Accessories Collection</h4>
+            </div>
+        </div>
+        
+        <div class="gallery-item rounded overflow-hidden" data-category="team" style="display: none;">
+            <img src="https://readdy.ai/api/search-image?query=fashion%20event%20in%20boutique%2C%20designer%20showcase%2C%20customers%20browsing%20new%20collection%2C%20champagne%20reception%2C%20elegant%20retail%20event%2C%20professional%20event%20photography&amp;width=600&amp;height=400&amp;seq=9&amp;orientation=landscape" alt="Fashion Event" class="w-full h-full object-cover">
+            <div class="gallery-caption">
+                <h4 class="font-medium">Spring Collection Launch Event</h4>
+            </div>
+        </div>
+    </div>
+</div>

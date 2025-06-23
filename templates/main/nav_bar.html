@@ -1,0 +1,157 @@
+{% load static %}
+<header  class=" top-0 left-0 right-0 z-50 transition-all bg-white-800 duration-300">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center">
+            <button class="lg:hidden mr-4 w-10 h-10 flex items-center justify-center text-black " id="mobile-menu-button">
+                <i class="ri-menu-line ri-lg"></i>
+            </button>
+            <a href="#" class="text-3xl font-['Pacifico'] text-primary  mx-6" >logo</a>
+        </div>
+        
+        <nav class="hidden lg:flex items-center space-x-8">
+            <a href="{% url 'show_page' %}" class="hover:text-primary transition-colors font-medium  text-black" >Home</a>
+            <div class="relative group">
+                <a class="hover:text-primary transition-colors font-medium text-black flex items-center" >
+                    Shop
+                    <span class="ml-1 w-5 h-5 flex items-center justify-center">
+                        <i class="ri-arrow-down-s-line"></i>
+                    </span>
+                </a>
+                <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    {% for i in catagories %}
+                    <a href="{% url 'products_list' i.name %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">{{i.name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <a href="{% url 'about' %}" id="header_txt" class="text-black hover:text-primary transition-colors font-medium">About</a>
+            <a href="{% url 'products_list1' %}" id="header_txt" class="text-black hover:text-primaryransition-colors font-medium">Collections</a>
+
+            {% if user.is_authenticated %}
+            
+            {% else %}
+            <a href="{% url 'register_page' %}" id="header_txt" class="text-black hover:text-primary transition-colors font-medium">signup</a>
+            {% endif %}
+        </nav>
+        
+        <div class="flex items-center space-x-4">
+            <div class="relative hidden lg:block">
+                <form action="{% url 'product_search' %}" method="post" enctype="multipart/form-data" class="relative">
+                    {% csrf_token %}
+                <input type="text" name="product_search" placeholder="Search..." class="pl-10 pr-4 py-2 rounded-full bg-white bg-opacity-20 text-white placeholder-white placeholder-opacity-75 border-black border-opacity-40 border focus:outline-none focus:ring-2 focus:ring-grey-500 w-40 lg:w-56">
+                 <button  type="submit" name="Search">
+                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center text-black">
+                    <i class="ri-search-line"></i>
+                </button>
+                </span>
+                </form>
+            </div>
+            
+            <button class="w-10 h-10 flex items-center justify-center text-black lg:hidden">
+                <i class="ri-search-line ri-lg"></i>
+            </button>
+            
+            <!-- <button class="w-10 h-10 flex items-center justify-center text-white">
+                <i class="ri-heart-line ri-lg"></i>
+            </button> -->
+            {% if user.is_authenticated %}
+            <button class="w-10 h-10 flex items-center justify-center text-black">
+                <a href="{% url 'account' %}" >
+                <i class="ri-user-line ri-lg"></i>
+                </a>
+            </button>
+            {% endif %}
+            <div class="relative">
+                <button class="w-10 h-10 flex items-center justify-center text-black">
+                    <a href="{% url 'cart' %}" >
+                    <i class="ri-shopping-bag-line ri-lg"></i>
+                    </a>
+                </button>
+                {% if cart.order_items.count %}
+                <span class="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center bg-primary text-white text-xs rounded-full">{{cart.order_items.count}}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+<div class="fixed inset-0 bg-black bg-opacity-80 z-50 transform -translate-x-full transition-transform duration-300" id="mobile-menu">
+    <div class="h-full w-4/5 max-w-sm bg-white overflow-y-auto">
+        <div class="p-4 flex justify-between items-center border-b">
+            <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+            <button class="w-10 h-10 flex items-center justify-center text-gray-500" id="close-menu-button">
+                <i class="ri-close-line ri-lg"></i>
+            </button>
+        </div>
+        
+        <div class="p-4">
+            <div class="relative mb-4">
+        <form action="{% url 'product_search' %}" method="post" enctype="multipart/form-data" class="relative">
+                    {% csrf_token %}
+                <input type="text" name="product_search" placeholder="Search..." class="w-full pl-10 pr-4 py-2 rounded-full bg-gray-100 text-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-primary">
+               
+                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-500">
+                     <button  type="submit" name="Search"><i class="ri-search-line"></i></button>
+                </span>
+            
+        </form>
+            </div>
+            
+            <nav class="space-y-4">
+                <a href="#" class="block py-2 text-gray-800 font-medium">Home</a>
+                
+                <div class="py-2">
+                    <button class="flex items-center justify-between w-full text-gray-800 font-medium" id="mobile-shop-button">
+                        Shop
+                        <span class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </span>
+                    </button>
+                  
+                     <div class="hidden pl-4 mt-2 space-y-2" id="mobile-shop-menu">
+                         {% for i in catagories %}
+                            <a href="{% url 'products_list' i.name %}" class="block py-1 text-gray-600">{{i.name}}</a>
+                        {% endfor %}
+                        </div>
+                  
+                </div>
+                
+                <a href="{% url 'products_list1' %}" class="block py-2 text-gray-800 font-medium">Collections</a>
+                <a href="{% url 'about' %}" class="block py-2 text-gray-800 font-medium">About</a>
+                <!-- <a href="" class="block py-2 text-gray-800 font-medium">Contact</a> -->
+                {% if user.is_authenticated %}
+                {% else %}
+                <a href="{% url 'register_page' %}" class="block py-2 text-gray-800 font-medium">signup</a>
+                {% endif %}
+            </nav>
+              {% if user.is_authenticated %}
+            <div class="mt-6 pt-6 border-t">
+              
+                <a href="{% url 'account' %}" class="flex items-center py-2 text-gray-800">
+                    <span class="w-6 h-6 flex items-center justify-center mr-3">
+                        <i class="ri-user-line"></i>
+                    </span>
+                    My Account
+                </a>
+                <!-- <a href="#" class="flex items-center py-2 text-gray-800">
+                    <span class="w-6 h-6 flex items-center justify-center mr-3">
+                        <i class="ri-heart-line"></i>
+                    </span>
+                    Wishlist
+                </a> -->
+                <a href="{% url 'cart' %}" class="flex items-center py-2 text-gray-800">
+                    <span class="w-6 h-6 flex items-center justify-center mr-3">
+                        <i class="ri-shopping-bag-line"></i>
+                    </span>
+                   {% if cart.order_items.count %}
+                    Shopping Bag ({{cart.order_items.count}})
+                    {% else %}
+                    Shopping Bag (0)
+                    {% endif %}
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script>
+</script>

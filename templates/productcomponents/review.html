@@ -1,0 +1,237 @@
+
+{% load static %}
+{% load get_item %}
+
+<!-- Reviews Section -->
+<div class="px-4 mt-8" id="reviews">
+<div class="flex justify-between items-center">
+<h2 class="text-xl font-semibold playfair">Customer Reviews</h2>
+<button class="text-primary text-sm font-medium cursor-pointer" id="write-review-btn">Write a Review</button>
+</div>
+<div class="mt-4 bg-gray-50 p-4 rounded-lg">
+<div class="flex items-center">
+<div class="text-3xl font-bold">{{average_rating}}</div>
+<div class="ml-2">
+<div class="flex">
+    {% for _ in "12345" %}
+         {% if forloop.counter <= average_rating %}
+<i class="ri-star-fill text-primary"></i>
+        {% else %}
+<i class="ri-star-fill text-grey-100"></i>
+       {% endif %}
+       {% endfor %}
+</div>
+<p class="text-sm text-gray-500">Based on {{product.review.count}} reviews</p>
+</div>
+</div>
+<div class="mt-3">
+<div class="flex items-center mb-1">
+<span class="text-xs w-8">5 ★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: {{star_percentage | get_item:5}}%"></div>
+</div>
+<span class="text-xs w-8">{{star_percentage | get_item:5}}%</span>
+</div>
+<div class="flex items-center mb-1">
+<span class="text-xs w-8">4 ★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: {{star_percentage | get_item:4}}%"></div>
+</div>
+<span class="text-xs w-8">{{star_percentage | get_item:4}}%</span>
+</div>
+<div class="flex items-center mb-1">
+<span class="text-xs w-8">3 ★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: {{star_percentage | get_item:3}}%"></div>
+</div>
+<span class="text-xs w-8">{{star_percentage | get_item:3}}%</span>
+</div>
+<div class="flex items-center mb-1">
+<span class="text-xs w-8">2 ★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: {{star_percentage | get_item:2}}%"></div>
+</div>
+<span class="text-xs w-8">{{star_percentage | get_item:2}}%</span>
+</div>
+<div class="flex items-center">
+<span class="text-xs w-8">1 ★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: {{star_percentage | get_item:1}}%"></div>
+</div>
+<span class="text-xs w-8">{{star_percentage | get_item:1}}%</span>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<div class="relative">
+<select class="appearance-none bg-white border border-gray-300 rounded-button py-2 pl-3 pr-10 text-sm focus:outline-none cursor-pointer">
+<option>All Ratings</option>
+<option>5 Stars</option>
+<option>4 Stars</option>
+<option>3 Stars</option>
+<option>2 Stars</option>
+<option>1 Star</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+<div class="relative">
+<select class="appearance-none bg-white border border-gray-300 rounded-button py-2 pl-3 pr-10 text-sm focus:outline-none cursor-pointer">
+<option>Most Recent</option>
+<option>Highest Rated</option>
+<option>Lowest Rated</option>
+<option>Most Helpful</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+<!-- Review Cards -->
+<div class="mt-6 space-y-6">
+{% for reviews in reviews %}
+    <div class="border-b border-gray-200 pb-6">
+    <div class="flex items-center">
+
+    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-medium">
+    EM
+    </div>
+    <div class="ml-3">
+    <p class="font-medium">{{reviews.user.first_name}}</p>
+    <div class="flex items-center text-xs text-gray-500">
+    <span>{{reviews.created_at}}</span>
+    <span class="mx-2">•</span>
+    <div class="flex">
+         {% for _ in "12345" %}
+         {% if forloop.counter <= reviews.rating %}
+        <i class="ri-star-fill text-yellow-400 ri-xs"></i>
+        {% else %}
+        <i class="ri-star-fill text-secondary ri-xs"></i>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+    </div>
+    </div>
+    </div>
+    <h3 class="font-medium mt-3">{{reviews.comment_title}}</h3>
+    <p class="text-sm text-gray-600 mt-1">
+    {{reviews.comment}}
+    </p>
+    <div class="mt-3 flex space-x-2">
+    {% if reviews.image1 %}
+    <img src="{{reviews.image1.url}}" class="w-14 h-14 rounded object-cover object-top">
+    {% endif %}
+    {% if reviews.image2 %}
+    <img src="{{reviews.image2.url}}" alt="Review image" class="w-14 h-14 rounded object-cover object-top">
+    {% endif %}
+    {% if reviews.image3 %}
+    <img src="{{reviews.image3.url}}" alt="Review image" class="w-14 h-14 rounded object-cover object-top">
+    {% endif %}
+    </div>
+    <!-- <div class="mt-3 flex items-center text-sm">
+    <button class="flex items-center text-gray-500 cursor-pointer">
+    <i class="ri-thumb-up-line mr-1"></i>
+    <span>Helpful (12)</span>
+    </button>
+    <span class="mx-3 text-gray-300">|</span>
+    <button class="flex items-center text-gray-500 cursor-pointer">
+    <i class="ri-thumb-down-line mr-1"></i>
+    <span>Not helpful (0)</span>
+    </button>
+    </div> -->
+    </div>
+ {% endfor %}
+    <button class="w-full py-3 border border-gray-300 rounded-button text-primary font-medium cursor-pointer">
+    Load More Reviews
+    </button>
+    </div>
+</div>
+
+<div id="review-modal" class="fixed inset-0 bg-black/50 z-50 hidden">
+<div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl p-4 transform transition-transform duration-300" id="modal-content">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-xl font-semibold">Write a Review</h2>
+<button id="close-modal" class="w-8 h-8 flex items-center justify-center cursor-pointer">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<div class="mb-4">
+    <form method="post" action="{% url 'add_review' %}" enctype="multipart/form-data"  class="mb-6">
+        {% csrf_token %}
+<p class="text-sm text-gray-500 mb-2">Your Rating</p>
+<div class="flex review-stars text-2xl">
+
+<input type="radio" name="rating" id="star5" value="5">
+<label for="star5" class="cursor-pointer"><i class="ri-star-line text-gray-300"></i></label>
+<input type="radio" name="rating" id="star4" value="4">
+<label for="star4" class="cursor-pointer"><i class="ri-star-line text-gray-300"></i></label>
+<input type="radio" name="rating" id="star3" value="3">
+<label for="star3" class="cursor-pointer"><i class="ri-star-line text-gray-300"></i></label>
+<input type="radio" name="rating" id="star2" value="2">
+<label for="star2" class="cursor-pointer"><i class="ri-star-line text-gray-300"></i></label>
+<input type="radio" name="rating" id="star1" value="1">
+<label for="star1" class="cursor-pointer"><i class="ri-star-line text-gray-300"></i></label>
+</div>
+</div>
+<div class="mb-4">
+    <input type="hidden" value="{{product.id}}" name="product">
+<label class="block text-sm text-gray-500 mb-2">Review Title</label>
+<input type="text" name="comment_title" class="w-full border border-gray-300 rounded-button p-3 focus:outline-none focus:border-primary" placeholder="Summarize your experience">
+</div>
+<div class="mb-4">
+<label class="block text-sm text-gray-500 mb-2">Your Review</label>
+<textarea name="comment" class="w-full border border-gray-300 rounded-button p-3 focus:outline-none focus:border-primary h-24" placeholder="Tell us about your experience with this product"></textarea>
+</div>
+<div class="mb-6">
+<label class="block text-sm text-gray-500 mb-2">Add Photos (optional)</label>
+<div class="flex items-center space-x-2">
+<button class="w-16 h-16 border border-dashed border-gray-300 p-4 rounded flex items-center justify-center cursor-pointer">
+<i class="ri-add-line ri-lg text-gray-400"><input  type="file" name="image1" ></i>
+</button>
+<button class="w-16 h-16 border border-dashed border-gray-300 p-4 rounded flex items-center justify-center cursor-pointer">
+<i class="ri-add-line ri-lg text-gray-400"><input  type="file" name="image2" ></i>
+</button>
+<button class="w-16 h-16 border border-dashed border-gray-300 p-4 rounded flex items-center justify-center cursor-pointer">
+<i class="ri-add-line ri-lg text-gray-400"><input type="file" name="image3" ></i>
+</button>
+</div>
+</div>
+<button type="submit" name="product_review" class="w-full bg-primary text-white py-3 rounded-button font-medium cursor-pointer rounded-button">
+Submit Review
+</button>
+</div>
+</form>
+</div>
+
+
+
+
+<script id="reviewModalHandler">
+document.addEventListener('DOMContentLoaded', function() {
+const modal = document.getElementById('review-modal');
+const modalContent = document.getElementById('modal-content');
+const openModalBtn = document.getElementById('write-review-btn');
+const closeModalBtn = document.getElementById('close-modal');
+openModalBtn.addEventListener('click', function() {
+modal.classList.remove('hidden');
+setTimeout(() => {
+modalContent.classList.add('translate-y-0');
+}, 10);
+modalContent.classList.remove('translate-y-full');
+});
+closeModalBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', function(e) {
+if (e.target === modal) {
+closeModal();
+}
+});
+function closeModal() {
+modalContent.classList.add('translate-y-full');
+setTimeout(() => {
+modal.classList.add('hidden');
+}, 300);
+}
+});
+</script>

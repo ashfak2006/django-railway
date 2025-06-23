@@ -1,0 +1,452 @@
+{% load static %}
+{% load gettotal %}
+{% load gettax %}
+
+
+<div class="max-w-6xl mt-12 mx-auto ">
+
+   
+    <h1 class="text-2xl font-semibold text-gray-800 mt-6 mb-4">Checkout</h1>
+       
+           
+        <!-- #adress -->
+        <div class="bg-white rounded shadow-sm p-4 mb-4">
+        <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-medium text-gray-800">Delivery Address</h2>
+        <a href="https://readdy.ai/home/cdb5b813-0211-4bdb-bbe5-b84bb530daa2/87ef046f-3cae-4638-b34c-014051fd5f00" data-readdy="true" class="text-primary text-sm font-medium flex items-center">
+        <i class="ri-edit-line mr-1"></i>Change
+        </a>
+        </div>
+        <div class="flex items-start space-x-3">
+        <div class="w-8 h-8 flex items-center justify-center bg-primary/10 rounded-full">
+        <i class="ri-map-pin-line text-primary"></i>
+        </div>
+        <div class="flex-1">
+        <p class="text-base font-medium text-gray-800">{{adress.name}}</p>
+        <p class="text-sm text-gray-600 mt-1"> {{adress.road_name}}, {{adress.house_no}}</p>
+        <p class="text-sm text-gray-600">{{adress.state}},  {{adress.pincode}} ,{{adress.state}}</p>
+        <p class="text-sm text-gray-600 mt-1">+91 {{adress.phonenumber}}</p>
+        <span class="inline-block mt-2 px-2 py-1 bg-green-50 text-green-700 text-xs font-medium rounded">Default Address</span>
+        </div>
+        </div>
+        </div>
+
+        <!-- form for placeorder -->
+        <form method="post" action="{% url 'palce_order' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Shipping Information -->
+        <div class="bg-white rounded shadow-sm p-4 mb-4">
+            <h2 class="text-lg font-medium text-gray-800 mb-4">Shipping Method</h2>
+            <div class="space-y-3">
+                <label class="block border border-primary bg-primary/5 rounded-button p-3 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                        <input type="radio" name="shippingMethod" value="standard" checked class="h-4 w-4 text-primary border-gray-300">
+                            <div class="ml-3">
+                                <span class="block text-sm font-medium text-gray-800">Standard Shipping</span>
+                                <span class="block text-xs text-gray-500">Delivery: June 20-22, 2025</span>
+                            </div>
+                        </div>
+                        <span class="text-sm text-green-500font-medium">free</span>
+                    </div>
+                </label>
+
+                <label class="block border border-gray-200 rounded-button p-3 cursor-pointer hover:border-gray-300">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input type="radio" name="shippingMethod" value="express" class="h-4 w-4 text-primary border-gray-300">
+                            <div class="ml-3">
+                                <span class="block text-sm font-medium text-gray-800">Express Shipping</span>
+                                <span class="block text-xs text-gray-500">Delivery: June 18-19, 2025</span>
+                            </div>
+                        </div>
+                        <span class="text-sm font-medium">$100</span>
+                    </div>
+                </label>
+
+                <label class="block border border-gray-200 rounded-button p-3 cursor-pointer hover:border-gray-300">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input type="radio" name="shippingMethod" value="overnight" class="h-4 w-4 text-primary border-gray-300">
+                            <div class="ml-3">
+                                <span class="block text-sm font-medium text-gray-800">Next Day Delivery</span>
+                                <span class="block text-xs text-gray-500">Delivery: June 17, 2025</span>
+                            </div>
+                        </div>
+                        <span class="text-sm font-medium">$200</span>
+                     </div>
+                </label>
+
+                <label class="block border border-gray-200 rounded-button p-3 cursor-pointer hover:border-gray-300">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input type="radio" name="shippingMethod" value="pickup" class="h-4 w-4 text-primary border-gray-300">
+                            <div class="ml-3">
+                                <span class="block text-sm font-medium text-gray-800">Store Pickup</span>
+                                <span class="block text-xs text-gray-500">Delivery: June 17, 2025</span>
+                            </div>
+                        </div>
+                        <span class="text-sm text-green-500 font-medium">free</span>
+                     </div>
+                </label>
+
+            </div>
+        </div>
+        
+
+            <!-- Payment Information -->
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+                <h2 class="text-lg font-medium text-gray-800 mb-4">Payment Method</h2>
+                <div class="space-y-3">
+
+                <label class="block border border-primary bg-primary/5 rounded-button p-3 cursor-pointer">
+                    <div class="flex items-center">
+                        <input type="radio" name="PaymnetMethod" value="upi" checked class="h-4 w-4 text-primary border-gray-300">
+                        <div class="ml-3 flex items-center">
+                            <span class="text-sm font-medium text-gray-800 mr-2">UPI Payment</span>
+                            <div class="flex space-x-1">
+                                <div class="w-8 h-5 flex items-center justify-center">
+                                    <i class="ri-bank-card-fill ri-lg text-green-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="block border border-gray-200 rounded-button p-3 cursor-pointer hover:border-gray-300">
+                    <div class="flex items-center">
+                            <input type="radio" name="PaymnetMethod" value="debit_card" class="h-4 w-4 text-primary border-gray-300">
+                        <div class="ml-3 flex items-center">
+                            <span class="text-sm font-medium text-gray-800 mr-2">Debit Card</span>
+                            <div class="flex space-x-1">
+                                <div class="w-8 h-5 flex items-center justify-center">
+                                    <i class="ri-bank-card-line ri-lg text-blue-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="block border border-gray-200 rounded-button p-3 cursor-pointer hover:border-gray-300">
+                    <div class="flex items-center">
+                        <input type="radio" name="PaymnetMethod" value="cash_on_delivery" class="h-4 w-4 text-primary border-gray-300">
+                        <div class="ml-3 flex items-center">
+                            <span class="text-sm font-medium text-gray-800 mr-2">Cash on Delivery</span>
+                            <div class="w-8 h-5 flex items-center justify-center">
+                                <i class="ri-money-dollar-circle-line ri-lg text-gray-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+
+            <div id="upiDetails" class="space-y-4 pt-4 mt-4 border-t border-gray-100 hidden">
+            <div>
+            <label for="upiId" class="block text-sm font-medium text-gray-700 mb-1">UPI ID</label>
+            <div class="relative">
+            <input type="text" id="upiId" class="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-1 focus:ring-primary" placeholder="username@upi">
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center">
+            <i class="ri-at-line text-gray-400"></i>
+            </div>
+            </div>
+            </div>
+            <div class="flex items-center mt-1">
+            <div class="w-5 h-5 flex items-center justify-center">
+            <i class="ri-shield-check-line text-green-600"></i>
+            </div>
+            <span class="ml-1 text-xs text-gray-600">Secure UPI payment powered by your bank</span>
+            </div>
+            </div>
+
+            <div id="debitCardDetails" class="space-y-4 pt-4 mt-4 border-t border-gray-100 hidden">
+            <div>
+            <label for="cardNumber" class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+            <div class="relative">
+            <input type="text" id="cardNumber" class="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-1 focus:ring-primary" placeholder="1234 5678 9012 3456" maxlength="19">
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center">
+            <i class="ri-bank-card-line text-gray-400"></i>
+            </div>
+            </div>
+            </div>
+            <div>
+            <label for="cardholderName" class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
+            <input type="text" id="cardholderName" class="w-full px-3 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Name on card">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+            <div>
+            <label for="expiryDate" class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+            <input type="text" id="expiryDate" class="w-full px-3 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-1 focus:ring-primary" placeholder="MM/YY" maxlength="5">
+            </div>
+            <div>
+            <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">
+            <span class="flex items-center">
+            CVV
+            <button type="button" id="cvvInfoBtn" class="ml-1 text-gray-400 hover:text-gray-600">
+            <i class="ri-information-line"></i>
+            </button>
+            </span>
+            </label>
+            <input type="password" id="cvv" class="w-full px-3 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-1 focus:ring-primary" placeholder="123" maxlength="4">
+            </div>
+            </div>
+            <div class="flex items-center mt-1">
+            <div class="w-5 h-5 flex items-center justify-center">
+            <i class="ri-shield-check-line text-green-600"></i>
+            </div>
+            <span class="ml-1 text-xs text-gray-600">Your card details are securely encrypted</span>
+            </div>
+            </div>
+            </div>
+         
+        </div>
+
+        <!-- Order Summary -->
+        <div class="bg-white rounded shadow-sm p-4 mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-medium text-gray-800">Order Summary</h2>
+                <button id="toggleSummaryBtn" type="button" class="text-primary text-sm font-medium cursor-pointer">Show details</button>
+            </div>
+            <div id="orderItems" class="hidden border-t border-gray-100 pt-3 space-y-3 mb-4">
+                {% for item in cart.order_items.all %}
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded bg-gray-100 overflow-hidden">
+                        <img src="{{item.product.image1.url}}" alt="White Sneakers" class="w-full h-full object-cover">
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-800">{{item.product.title}}</p>
+                        <p class="text-xs text-gray-500">{{item.quantity}}</p>
+                    </div>
+                </div>
+                <span class="text-sm font-medium">${{item.total_price}}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="space-y-2">
+            <div class="flex justify-between text-sm">
+                <span class="text-gray-600">Subtotal</span>
+                <span class="font-medium">${{cart.total_amount}}</span>
+            </div>
+            <div class="flex justify-between text-sm">
+                <span class="text-gray-600">Shipping</span>
+                 {% if cart.shipping.is_free %}
+                 <span class="font-medium text-green-500">free</span>
+                 {% else %}
+                <span class="font-medium">${{cart.shipping.cost}}</span>
+                {% endif  %}
+            </div>
+            <div class="flex justify-between text-sm">
+                {% if cart.promocode %}
+                     <span class="text-gray-600"> Discount Coupen • Applied </span>
+                        <span class="font-medium"> you save {{request.session.discount_amount}}<br> on this order</span>
+                {% endif %}
+            
+            </div>
+            <div class="pt-2 mt-2 border-t border-gray-100">
+                <div class="flex justify-between">
+                    <span class="text-base font-medium text-gray-800">Total</span>
+                    <span class="text-base font-semibold text-gray-900">${{cart.grand_total}}</span>
+
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- tab bar --> 
+
+    <div class="flex items-center py-6 justify-between mb-8">
+        <a href="{% url 'cart' %}" class="text-gray-600 text-sm font-medium flex items-center cursor-pointer">
+        <i class="ri-arrow-left-s-line mr-1"></i> Back to Cart
+        </a>
+        <button  type="submit" name="check_out"  class="px-6 py-3 bg-primary text-white font-medium rounded-button !rounded-button shadow-sm hover:bg-primary/90 transition-colors">Continue to Payment</button>
+    </div>
+    <!-- form end place_order -->
+    </form>
+</div>
+
+
+<!-- CVV Info Modal -->
+<div id="cvvModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+<div class="bg-white rounded-lg p-4 max-w-xs w-full mx-4">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-lg font-medium text-gray-800">CVV Information</h3>
+<button id="closeModal" class="text-gray-500 hover:text-gray-700 cursor-pointer">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<div class="mb-4">
+<p class="text-sm text-gray-600">The CVV is a 3 or 4 digit security code typically found on the back of your card. For American Express cards, it's a 4-digit code on the front.</p>
+<div class="mt-3 flex justify-center">
+<img src="https://readdy.ai/api/search-image?query=credit%20card%20CVV%20location%20diagram%2C%20simple%20illustration%20showing%20back%20of%20card%20with%20CVV%20highlighted%2C%20educational%20graphic&width=250&height=150&seq=4&orientation=landscape" alt="CVV Location" class="w-full max-w-[200px] h-auto">
+</div>
+</div>
+<button id="gotItBtn" class="w-full py-2 bg-primary text-white font-medium rounded-button !rounded-button">Got it</button>
+</div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+<div class="bg-white rounded-lg p-5 max-w-xs w-full mx-4">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
+<i class="ri-check-line ri-2x text-green-600"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-800 mb-2">Payment Successful!</h3>
+<p class="text-sm text-gray-600 mb-4">Your order has been placed successfully. You will receive a confirmation email shortly.</p>
+<button id="continueShoppingBtn" class="w-full py-3 bg-primary text-white font-medium rounded-button !rounded-button">Continue Shopping</button>
+</div>
+</div>
+</div>
+
+<script id="toggleScripts">
+document.addEventListener('DOMContentLoaded', function() {
+// Toggle Order Summary
+const toggleSummaryBtn = document.getElementById('toggleSummaryBtn');
+const orderItems = document.getElementById('orderItems');
+if (toggleSummaryBtn && orderItems) {
+toggleSummaryBtn.addEventListener('click', function() {
+const isHidden = orderItems.classList.contains('hidden');
+if (isHidden) {
+orderItems.classList.remove('hidden');
+toggleSummaryBtn.textContent = 'Hide details';
+} else {
+orderItems.classList.add('hidden');
+toggleSummaryBtn.textContent = 'Show details';
+}
+});
+}
+});
+</script>
+<script id="paymentMethodScripts">
+document.addEventListener('DOMContentLoaded', function() {
+const paymentMethods = document.getElementsByName('paymentMethod');
+const upiDetails = document.getElementById('upiDetails');
+const debitCardDetails = document.getElementById('debitCardDetails');
+const cvvInfoBtn = document.getElementById('cvvInfoBtn');
+const cvvModal = document.getElementById('cvvModal');
+function updatePaymentMethod() {
+const selectedMethod = Array.from(paymentMethods).find(radio => radio.checked);
+if (selectedMethod) {
+upiDetails.classList.add('hidden');
+debitCardDetails.classList.add('hidden');
+if (selectedMethod.value === 'upi') {
+upiDetails.classList.remove('hidden');
+} else if (selectedMethod.value === 'debit') {
+debitCardDetails.classList.remove('hidden');
+}
+}
+paymentMethods.forEach(radio => {
+const container = radio.closest('label');
+if (radio.checked) {
+container.classList.add('border-primary', 'bg-primary/5');
+container.classList.remove('border-gray-200');
+} else {
+container.classList.remove('border-primary', 'bg-primary/5');
+container.classList.add('border-gray-200');
+}
+});
+}
+if (cvvInfoBtn && cvvModal) {
+cvvInfoBtn.addEventListener('click', function() {
+cvvModal.classList.remove('hidden');
+});
+}
+paymentMethods.forEach(radio => {
+radio.addEventListener('change', updatePaymentMethod);
+});
+updatePaymentMethod();
+});
+</script>
+<script id="shippingMethodScripts">
+document.addEventListener('DOMContentLoaded', function() {
+const shippingMethods = document.getElementsByName('shippingMethod');
+function updateShippingMethod() {
+// Update styling for selected shipping method
+shippingMethods.forEach(radio => {
+const container = radio.closest('label');
+if (radio.checked) {
+container.classList.add('border-primary', 'bg-primary/5');
+container.classList.remove('border-gray-200');
+} else {
+container.classList.remove('border-primary', 'bg-primary/5');
+container.classList.add('border-gray-200');
+}
+});
+}
+shippingMethods.forEach(radio => {
+radio.addEventListener('change', updateShippingMethod);
+});
+// Initialize shipping method display
+updateShippingMethod();
+});
+</script>
+<script id="modalScripts">
+document.addEventListener('DOMContentLoaded', function() {
+const cvvModal = document.getElementById('cvvModal');
+const closeModal = document.getElementById('closeModal');
+const gotItBtn = document.getElementById('gotItBtn');
+const continueBtn = document.getElementById('continueBtn');
+const successModal = document.getElementById('successModal');
+const continueShoppingBtn = document.getElementById('continueShoppingBtn');
+function closeCvvModal() {
+if (cvvModal) {
+cvvModal.classList.add('hidden');
+}
+}
+if (closeModal) {
+closeModal.addEventListener('click', closeCvvModal);
+}
+if (gotItBtn) {
+gotItBtn.addEventListener('click', closeCvvModal);
+}
+if (continueBtn && successModal) {
+continueBtn.addEventListener('click', function() {
+setTimeout(function() {
+successModal.classList.remove('hidden');
+}, 800);
+});
+}
+if (continueShoppingBtn && successModal) {
+continueShoppingBtn.addEventListener('click', function() {
+successModal.classList.add('hidden');
+});
+}
+});
+</script>
+<script id="formValidationScripts">
+document.addEventListener('DOMContentLoaded', function() {
+const cardNumberInput = document.getElementById('cardNumber');
+if (cardNumberInput) {
+cardNumberInput.addEventListener('input', function(e) {
+let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+let formattedValue = '';
+for (let i = 0; i < value.length; i++) {
+if (i > 0 && i % 4 === 0) {
+formattedValue += ' ';
+}
+formattedValue += value[i];
+}
+e.target.value = formattedValue.substring(0, 19);
+});
+}
+const expiryDateInput = document.getElementById('expiryDate');
+if (expiryDateInput) {
+expiryDateInput.addEventListener('input', function(e) {
+let value = e.target.value.replace(/\D/g, '');
+if (value.length > 2) {
+value = value.substring(0, 2) + '/' + value.substring(2, 4);
+}
+e.target.value = value;
+});
+}
+const cvvInput = document.getElementById('cvv');
+if (cvvInput) {
+cvvInput.addEventListener('input', function(e) {
+let value = e.target.value.replace(/\D/g, '');
+e.target.value = value.substring(0, 4);
+});
+}
+});
+</script>

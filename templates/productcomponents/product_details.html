@@ -1,0 +1,367 @@
+{% load static %}
+
+            <!-- Image Gallery Section -->
+<style>
+body{
+font-family: 'Poppins', sans-serif;
+background-color: #FAFAFA;
+}
+ .playfair {
+font-family: 'Playfair Display', serif;
+}
+.product-image {
+transition: transform 0.3s ease;
+}
+.product-image:hover {
+transform: scale(1.05);
+}
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.quantity-input {
+-moz-appearance: textfield;
+}
+.review-stars input {
+display: none;
+}
+.review-stars label {
+cursor: pointer;
+}
+.review-stars label:hover ~ label i,
+.review-stars label:hover i,
+.review-stars input:checked ~ label i {
+color: #D4AF37;
+}
+</style>
+<div class="relative">
+<div class="w-full h-[300px] overflow-hidden" id="main-image-container">
+<img src="{{product.image1.url}}" alt="Diamond Pendant Necklace" class="w-full h-full object-cover object-top" id="main-image">
+</div>
+<div class="absolute bottom-4 right-4 flex space-x-2">
+<button class="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer shadow-md">
+<i class="ri-zoom-in-line ri-lg"></i>
+</button>
+<button class="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer shadow-md">
+<i class="ri-share-line ri-lg"></i>
+</button>
+</div>
+<div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1" id="image-indicators">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300"></div>
+</div>
+</div>
+
+<div class="flex justify-center mt-4 px-4 space-x-2" id="thumbnails">
+{% if product.image2 %}
+    <div class="w-16 h-16 border-2 border-primary rounded cursor-pointer overflow-hidden" data-index="1">
+    <img src="{{product.image2.url}}" alt="Thumbnail 1" class="w-full h-full object-cover object-top">
+    </div>
+{% endif %}
+{% if product.image3 %}
+    <div class="w-16 h-16 border-2 border-primary rounded cursor-pointer overflow-hidden" data-index="1">
+    <img src="{{product.image3.url}}" alt="Thumbnail 1" class="w-full h-full object-cover object-top">
+    </div>
+{% endif %}
+{% if product.image4 %}
+    <div class="w-16 h-16 border-2 border-primary rounded cursor-pointer overflow-hidden" data-index="1">
+    <img src="{{product.image4.url}}" alt="Thumbnail 1" class="w-full h-full object-cover object-top">
+    </div>
+{% endif %}
+{% if product.image5 %}
+    <div class="w-16 h-16 border-2 border-primary rounded cursor-pointer overflow-hidden" data-index="1">
+    <img src="{{product.image5.url}}" alt="Thumbnail 1" class="w-full h-full object-cover object-top">
+    </div>
+{% endif %}
+</div>
+
+<div class="px-4 mt-6">
+<div class="flex justify-between items-start">
+<div>
+<h1 class="text-2xl font-semibold playfair">{{product.title}}</h1>
+<p class="text-sm text-gray-500 mt-1">18K Gold | 0.75ct Diamond</p>
+{% if product.stock_status == "low_stock" %}
+<p class="text-sm text-orange-500 mt-1">Low Stock</p>
+{% endif %}
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center">
+<span class="text-xs text-gray-500 line-through mr-2">${{product.price}}</span>
+<span class="text-xl font-semibold text-primary">${{product.sale_price}}</span>
+</div>
+<span class="text-xs bg-secondary/20 text-secondary px-2 py-0.5 rounded mt-1">{{product.discount}}% OFF</span>
+</div>
+</div>
+<div class="flex items-center mt-3">
+<div class="flex">
+{% for _ in "12345" %}
+         {% if forloop.counter <= average_rating %}
+<i class="ri-star-fill text-primary"></i>
+        {% else %}
+<i class="ri-star-fill text-grey-100"></i>
+       {% endif %}
+       {% endfor %}
+</div>
+<span class="ml-2 text-sm font-medium">{{average_rating}}</span>
+<span class="mx-2 text-sm text-gray-400">|</span>
+<a href="#reviews" class="text-sm text-primary">{{product.review.count}} Reviews</a>
+</div>
+</div>
+
+<div class="px-4 mt-6">
+<div class="flex justify-between items-center">
+<h2 class="text-lg font-medium">Quantity</h2>
+<form method="post" action="{% url 'add_to_cart' %}" enctype="multipart/form-data">
+ {% csrf_token %}
+<input type="hidden"  name="product_id" value="{{product.id}}"/>
+<div class="flex items-center border border-gray-300 rounded-button overflow-hidden">
+<button type="button" id="decrement" class="w-10 h-10 flex items-center justify-center bg-gray-100 cursor-pointer !rounded-button">
+<i class="ri-subtract-line"></i>
+</button>
+<input type="number" name="quantity" id="quantity" class="quantity-input w-12 h-10 text-center border-none focus:outline-none" value="1" min="1" max="10">
+<button type="button" id="increment" class="w-10 h-10 flex items-center justify-center bg-gray-100 cursor-pointer !rounded-button">
+<i class="ri-add-line"></i>
+</button>
+</div>
+</div>
+<!-- <div class="mt-6">
+<h2 class="text-lg font-medium mb-3">Chain Length</h2>
+<div class="grid grid-cols-3 gap-3" id="chain-length-options">
+<button id="length-16" class="border border-gray-300 py-2 px-4 rounded-button text-sm hover:border-primary cursor-pointer" data-price="1599">16 inches</button>
+<button id="length-18" class="border border-primary bg-primary/5 py-2 px-4 rounded-button text-sm text-primary cursor-pointer" data-price="1599">18 inches</button>
+<button id="length-20" class="border border-gray-300 py-2 px-4 rounded-button text-sm hover:border-primary cursor-pointer" data-price="1699">20 inches</button>
+</div>
+</div> -->
+{% if product.stock_status == "out_of_stock" %}
+<div class="flex space-x-3 mt-6">
+    <h1 class="text-2xl text-red-600 font-semibold ">Out Of Stock</h1>
+</div>
+{% else %}
+<div class="flex space-x-3 mt-6">
+<button type="submit" class="flex-1 bg-primary text-white py-3 rounded-button font-medium shadow-md hover:bg-primary/90 transition cursor-pointer !rounded-button flex items-center justify-center">
+<i class="ri-shopping-bag-line mr-2"></i>
+Add to Cart
+</button>
+<button  class="flex-1 bg-black text-white py-3 rounded-button font-medium shadow-md hover:bg-black/90 transition cursor-pointer !rounded-button">
+Buy Now
+</button>
+</form>
+</div>
+{% endif %}
+</div>
+
+<!-- Product Details -->
+<div class="px-4 mt-8">
+<div class="border-b border-gray-200">
+<div class="flex justify-between items-center py-3 cursor-pointer" id="description-toggle">
+<h2 class="text-lg font-medium">Product Description</h2>
+<i class="ri-arrow-down-s-line ri-lg" id="description-icon"></i>
+</div>
+<div class="pb-4 hidden" id="description-content">
+<p class="text-sm text-gray-600 leading-relaxed">
+{{product.description}}
+</p>
+</div>
+</div>
+<div class="border-b border-gray-200">
+<div class="flex justify-between items-center py-3 cursor-pointer" id="materials-toggle">
+<h2 class="text-lg font-medium">Materials & Care</h2>
+<i class="ri-arrow-down-s-line ri-lg" id="materials-icon"></i>
+</div>
+<div class="pb-4 hidden" id="materials-content">
+<div class="text-sm text-gray-600">
+<p class="mb-2"><span class="font-medium">Metal:</span> 18K Gold (5.2g)</p>
+<p class="mb-2"><span class="font-medium">Diamond:</span> 0.75ct, VS1 clarity, F color</p>
+<p class="mb-2"><span class="font-medium">Chain:</span> 18K Gold, available in 16", 18", or 20" lengths</p>
+<p class="mt-3 font-medium">Care Instructions:</p>
+<ul class="list-disc pl-5 mt-1">
+<li>Clean with a soft, lint-free cloth</li>
+<li>Store in the provided jewelry box</li>
+<li>Avoid contact with perfumes and chemicals</li>
+<li>Professional cleaning recommended every 6 months</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="border-b border-gray-200">
+<div class="flex justify-between items-center py-3 cursor-pointer" id="shipping-toggle">
+<h2 class="text-lg font-medium">Shipping & Returns</h2>
+<i class="ri-arrow-down-s-line ri-lg" id="shipping-icon"></i>
+</div>
+<div class="pb-4 hidden" id="shipping-content">
+<div class="text-sm text-gray-600">
+<p class="mb-2"><span class="font-medium">Free Express Shipping:</span> 2-3 business days</p>
+<p class="mb-2"><span class="font-medium">International Shipping:</span> 5-7 business days</p>
+<p class="mb-2"><span class="font-medium">Insurance:</span> All shipments are fully insured</p>
+<p class="mt-3 font-medium">Return Policy:</p>
+<p class="mt-1">We offer a 30-day return policy for unworn items in original condition with all tags attached. Custom pieces are final sale.</p>
+</div>
+</div>
+</div>
+</div>
+
+        
+            <!-- Product Information Section -->
+           
+</div>
+<div class="fixed bottom-0 left-0 w-full bg-white shadow-[0_-4px_10px_rgba(0,0,0,0.05)] py-3 px-4 flex items-center justify-between z-40">
+<div>
+<span class="text-xs text-gray-500 line-through">${{product.price}}</span>
+<div class="text-lg font-semibold text-primary">${{product.sale_price}}</div>
+</div>
+<form method="post" action="{% url 'add_to_cart' %}" enctype="multipart/form-data">
+{% csrf_token %}
+    <input type="hidden"  name="product_id" value="{{product.id}}"/>
+     <input type="number" hidden value="1" min="1" name="quantity"/>
+{% if product.stock_status == "out_of_stock" %}
+<h1 class="text-2xl text-red-600 font-semibold ">Out Of Stock</h1>
+{% else %}
+<button type="submit"  class="bg-primary text-white py-3 px-6 rounded-button font-medium shadow-md hover:bg-primary/90 transition cursor-pointer !rounded-button flex items-center">
+<i class="ri-shopping-bag-line mr-2"></i>
+Add to Cart
+</button>
+{% endif %}
+</form>
+</div>
+
+
+<script id="chainLengthHandler">
+document.addEventListener('DOMContentLoaded', function() {
+const chainOptions = document.getElementById('chain-length-options');
+const priceElements = document.querySelectorAll('.text-primary:not(.text-xs)');
+const originalPriceElements = document.querySelectorAll('.text-gray-500.line-through');
+chainOptions.addEventListener('click', function(e) {
+const button = e.target.closest('button');
+if (!button) return;
+const allButtons = chainOptions.querySelectorAll('button');
+allButtons.forEach(btn => {
+btn.classList.remove('border-primary', 'bg-primary/5', 'text-primary');
+btn.classList.add('border-gray-300');
+});
+button.classList.remove('border-gray-300');
+button.classList.add('border-primary', 'bg-primary/5', 'text-primary');
+const newPrice = button.dataset.price;
+const formattedPrice = `$${newPrice}`;
+const originalPrice = (parseInt(newPrice) + 300).toString();
+const formattedOriginalPrice = `$${originalPrice}`;
+priceElements.forEach(el => {
+el.textContent = formattedPrice;
+});
+originalPriceElements.forEach(el => {
+el.textContent = formattedOriginalPrice;
+});
+});
+});
+</script>
+<script id="quantityHandler">
+document.addEventListener('DOMContentLoaded', function() {
+const quantityInput = document.getElementById('quantity');
+const decrementBtn = document.getElementById('decrement');
+const incrementBtn = document.getElementById('increment');
+decrementBtn.addEventListener('click', function() {
+const currentValue = parseInt(quantityInput.value);
+if (currentValue > 1) {
+quantityInput.value = currentValue - 1;
+}
+updateDecrementButtonState();
+});
+incrementBtn.addEventListener('click', function() {
+const currentValue = parseInt(quantityInput.value);
+if (currentValue < 10) {
+quantityInput.value = currentValue + 1;
+}
+updateDecrementButtonState();
+});
+quantityInput.addEventListener('change', function() {
+let value = parseInt(this.value);
+if (isNaN(value) || value < 1) {
+this.value = 1;
+} else if (value > 10) {
+this.value = 10;
+}
+updateDecrementButtonState();
+});
+function updateDecrementButtonState() {
+if (parseInt(quantityInput.value) <= 1) {
+decrementBtn.classList.add('opacity-50');
+} else {
+decrementBtn.classList.remove('opacity-50');
+}
+}
+updateDecrementButtonState();
+});
+</script>
+<script id="accordionHandler">
+document.addEventListener('DOMContentLoaded', function() {
+const toggles = [
+{
+toggle: document.getElementById('description-toggle'),
+content: document.getElementById('description-content'),
+icon: document.getElementById('description-icon')
+},
+{
+toggle: document.getElementById('materials-toggle'),
+content: document.getElementById('materials-content'),
+icon: document.getElementById('materials-icon')
+},
+{
+toggle: document.getElementById('shipping-toggle'),
+content: document.getElementById('shipping-content'),
+icon: document.getElementById('shipping-icon')
+}
+];
+toggles.forEach(item => {
+item.toggle.addEventListener('click', function() {
+const isHidden = item.content.classList.contains('hidden');
+// Close all sections
+toggles.forEach(section => {
+section.content.classList.add('hidden');
+section.icon.classList.remove('transform', 'rotate-180');
+});
+// Open clicked section if it was closed
+if (isHidden) {
+item.content.classList.remove('hidden');
+item.icon.classList.add('transform', 'rotate-180');
+}
+});
+});
+});
+</script>
+<script id="imageHandler">
+document.addEventListener('DOMContentLoaded', function() {
+    const mainImage = document.getElementById('main-image');
+    const thumbnails = document.getElementById('thumbnails');
+    const indicators = document.getElementById('image-indicators').children;
+    const imageUrls = [
+        "{{product.image1.url}}",
+        "{{product.image2.url}}",
+        "{{product.image3.url}}",
+        "{{product.image4.url}}"
+    ];
+    thumbnails.addEventListener('click', function(e) {
+        const thumbnail = e.target.closest('div[data-index]');
+        if (!thumbnail) return;
+        const index = parseInt(thumbnail.dataset.index) - 1;
+        
+        // Update main image
+        mainImage.src = imageUrls[index];
+        
+        // Update thumbnail borders
+        thumbnails.querySelectorAll('div[data-index]').forEach(thumb => {
+            thumb.classList.remove('border-2', 'border-primary');
+            thumb.classList.add('border', 'border-gray-200');
+        });
+        thumbnail.classList.remove('border', 'border-gray-200');
+        thumbnail.classList.add('border-2', 'border-primary');
+        
+        // Update indicators
+        Array.from(indicators).forEach((indicator, i) => {
+            indicator.classList.remove('bg-primary', 'bg-gray-300');
+            indicator.classList.add(i === index ? 'bg-primary' : 'bg-gray-300');
+        });
+    });
+});
+</script>

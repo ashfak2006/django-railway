@@ -1,0 +1,403 @@
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Playfair Display', serif;
+}
+.hero-section {
+background-image: url('https://readdy.ai/api/search-image?query=Luxury%20jewelry%20display%20with%20elegant%20gold%20and%20diamond%20pieces%20arranged%20on%20a%20cream-colored%20silk%20fabric.%20The%20background%20is%20softly%20blurred%20with%20a%20gentle%20gradient%20from%20cream%20to%20white.%20The%20lighting%20is%20soft%20and%20glamorous%2C%20highlighting%20the%20sparkle%20of%20the%20diamonds%20and%20the%20warm%20glow%20of%20the%20gold.%20The%20composition%20is%20balanced%20and%20sophisticated%2C%20with%20plenty%20of%20negative%20space%20on%20the%20left%20side%20for%20text%20overlay.&width=1600&height=800&seq=123456&orientation=landscape');
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+}
+.product-card:hover .quick-view {
+    opacity: 1;
+}
+.product-card:hover img {
+    transform: scale(1.05);
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #c8a951;
+    cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #c8a951;
+    cursor: pointer;
+    border: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    user-select: none;
+}
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #c8a951;
+    border-color: #c8a951;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+.custom-checkbox .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.custom-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+}
+.custom-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+.switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .switch-slider {
+    background-color: #c8a951;
+}
+input:checked + .switch-slider:before {
+    transform: translateX(22px);
+}
+
+/* <--------------------------------------------------------------------product details-----------------------> */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.image-zoom-container {
+    position: relative;
+    overflow: hidden;
+}
+.image-zoom {
+    transition: transform 0.3s ease;
+}
+.image-zoom:hover {
+    transform: scale(1.5);
+    transform-origin: var(--x) var(--y);
+}
+.thumbnail.active {
+    border-color: #3b82f6;
+}
+@media (max-width: 768px) {
+    .sticky-add-to-cart {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        z-index: 50;
+        box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* <-------------------------------------checkout----------------------------------------> */
+:where([class^="ri-"])::before { content: "\f3c2"; }
+        
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.credit-card-input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 1px #4f46e5;
+}
+
+.progress-bar-active {
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+.progress-bar-active .progress-circle {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+    color: white;
+}
+
+.progress-bar-completed {
+    color: #10b981;
+}
+
+.progress-bar-completed .progress-circle {
+    background-color: #10b981;
+    border-color: #10b981;
+    color: white;
+}
+
+.progress-line {
+    height: 2px;
+    background-color: #e5e7eb;
+    flex: 1;
+    margin: 0 8px;
+}
+
+.progress-line-active {
+    background-color: #4f46e5;
+}
+
+.progress-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #9ca3af;
+    font-size: 12px;
+    font-weight: 600;
+}
+/* <----------------------------cart page-------------------> */
+
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.quantity-input {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+
+/* ---------------------------------------login logout---------------------------------------------- */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* -------------------------------------------------------account about-------------------------------------------- */
+
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.account-tab.active {
+    color: #4f46e5;
+    border-color: #4f46e5;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    position: relative;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+}
+
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 1px;
+    background-color: white;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    height: 1.5rem;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e5e7eb;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.1rem;
+    width: 1.1rem;
+    left: 0.2rem;
+    bottom: 0.2rem;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4f46e5;
+}
+
+input:checked + .slider:before {
+    transform: translateX(1.5rem);
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 200px;
+    grid-auto-flow: dense;
+    gap: 1rem;
+}
+
+.gallery-item {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.gallery-item:nth-child(3n) {
+    grid-row: span 2;
+}
+
+.gallery-item:nth-child(5n) {
+    grid-column: span 2;
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 50;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}

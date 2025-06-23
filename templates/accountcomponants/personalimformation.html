@@ -1,0 +1,162 @@
+{% load static %}
+
+<div id="personal-info" class="tab-content active">
+    <div class="bg-white rounded shadow-sm p-6 mb-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold">Personal Information</h2>
+            
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <h1  class="w-full px-4 py-2 " >{{user.first_name}}</h1>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <h1  class="w-full px-4 py-2 " >{{user.last_name}}</h1>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <h1  class="w-full px-4 py-2 " >{{user.email}}</h1>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <h1  class="w-full px-4 py-2 " >{{user.phone}}</h1>
+            </div>
+        </div>
+
+    <form action="{% url 'edit_profile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="flex justify-between mt-12 items-center mb-6">
+            <h2 class="text-xl font-semibold">edit Information</h2>
+            <button type="button" id="edit_profile_button"  class="bg-primary text-white px-4 py-2 rounded-button whitespace-nowrap flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                    <i class="ri-edit-line"></i>
+                </div>
+                Edit Profile
+            </button>
+        </div>
+
+        <div id="profile_form" class="grid grid-cols-1 hidden md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input type="text" value="{{user.first_name}}" name="first_name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" >
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input type="text" value="{{user.last_name}}" name="last_name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" >
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <input type="email" value="{{user.email}}" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" >
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <input type="tel" value="{{user.phone}}" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" >
+            </div>
+            <div>
+                <button type="submit" name="update-form" class="bg-primary text-white px-4 py-2 rounded-button whitespace-nowrap flex items-center">
+                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                        <i class="ri-edit-line"></i>
+                    </div>
+                    Edit Profile
+                </button>
+            </div> 
+        </div>
+    </form>
+
+    </div>
+    
+    
+
+    <div class="bg-white rounded shadow-sm p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold">Security</h2>
+            <button id="change_password_button" class="bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-button whitespace-nowrap flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                    <i class="ri-lock-line"></i>
+                </div>
+                Change Password
+            </button>
+        </div>
+
+
+        <div id="change_password" class="bg-white rounded hidden shadow-sm p-6">
+        <form action="{% url 'change_password' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                <input type="password" name="new_password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" >
+                </div>
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">confirm Password</label>
+                <input type="password" name="confirm_password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" > 
+                </div>
+            <button type="submit" name="change_password" class="bg-primary text-white mt-6 px-4 py-2 rounded-button whitespace-nowrap flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                    <i class="ri-edit-line"></i>
+                </div>
+               change password
+            </button>
+        </form>
+        </div>
+
+        
+        <!-- <div class="space-y-4">
+            <div class="flex justify-between items-center p-4 border border-gray-200 rounded">
+                <div>
+                    <h3 class="font-medium">Two-Factor Authentication</h3>
+                    <p class="text-sm text-gray-500">Add an extra layer of security to your account</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <div class="flex justify-between items-center p-4 border border-gray-200 rounded">
+                <div>
+                    <h3 class="font-medium">Login Notifications</h3>
+                    <p class="text-sm text-gray-500">Receive alerts when someone logs into your account</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+
+    const button = document.getElementById('change_password_button');
+    const Password_form = document.getElementById('change_password');
+    const edit_button = document.getElementById('edit_profile_button');
+    const profile = document.getElementById('profile_form');
+
+    button.addEventListener('click', function() {
+        if (Password_form.classList.contains('hidden')){
+            Password_form.classList.remove('hidden');
+            console.log('remove hidden');
+        }
+        else{
+            Password_form.classList.add('hidden');
+            console.log('add hidden');
+        }
+    });
+    edit_button.addEventListener('click', function() {
+        if (profile.classList.contains('hidden')){
+            profile.classList.remove('hidden');
+            console.log('remove hidden');
+        }
+        else{
+            profile.classList.add('hidden');
+            console.log('add hidden');
+        }
+    });
+
+});
+</script>
