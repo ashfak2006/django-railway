@@ -47,8 +47,4 @@ I'm planning several big updates:
 
 Razorpay integration for payments
 
-User authentication & order tracking
-
-A polished UI with Tailwind CSS
-
 REST API with Django REST Framework
